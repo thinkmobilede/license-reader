@@ -26,7 +26,7 @@ def getLicenseFile(files):
     names = ['license', 'licence']
     for file in files:
         for name in names:
-            if name in file.lower():
+            if file.lower().startswith(name):
                 return file
     return None        
     
