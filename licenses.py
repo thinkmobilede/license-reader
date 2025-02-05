@@ -52,8 +52,8 @@ def readPackageJson(path):
         if 'author' in package:
             if isinstance(package["author"], str):
                 author = package["author"]
-                email = re.findall('<(.*?)>', author)
-                url = re.findall('\((.*?)\)', author)
+                email = re.findall(r'<(.*?)>', author)
+                url = re.findall(r'\((.*?)\)', author)
                 if len(email) > 0:
                     info["authorEmail"] = email[0]
                     author = author.partition(' <')[0]
@@ -82,7 +82,7 @@ def readPackageJson(path):
         repoUrl = repoUrl.replace('git+https://github.com', 'https://github.com')
         repoUrl = repoUrl.replace('git://github.com', 'https://github.com')
         repoUrl = repoUrl.replace('git@github.com:', 'https://github.com/')
-        repoUrl = re.sub('\.git$', '', repoUrl)
+        repoUrl = re.sub(r'\.git$', '', repoUrl)
         if 'http' not in repoUrl:
             repoUrl = 'https://github.com/' + repoUrl
         info['repository'] = repoUrl
